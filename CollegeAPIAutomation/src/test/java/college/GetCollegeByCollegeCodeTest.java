@@ -365,7 +365,7 @@ public class GetCollegeByCollegeCodeTest {
         Assert.assertEquals(path,"/test/v1/campus/college/collegeCode/125");
     }
 
-    //@MethodObjective-Change the method type from get to post and check if status code is correct or not.
+    //@MethodObjective- Verify that change the method type from get to post and check if status code is correct or not.
     @Test(priority=11)
     public void changeInMethodResponse(){
         //Specify the url
