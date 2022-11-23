@@ -657,4 +657,88 @@ public class AddCollegeAutomationTest {
         Assert.assertTrue(error.equals("Method Not Allowed"));
     }
 
+    //@MethodObjective- Validate that on adding the college its detais are added
+    // successfully and on geting the id with same college code its same as data added.
+    @Test(priority=34)
+    public void validateResponseBody() {
+           //college added for college code
+            AddCollegeDo addCollegeDo = new AddCollegeDo();
+            //college code is unique so it need to be change everytime
+            addCollegeDo.setCollegeCode("1125");
+            GetApiResponse response = url.setUpForAddCollege(addCollegeDo);
+            int statusCode = response.getStatusCode();
+            Assert.assertEquals(statusCode,200);
+            String statusLine= response.getStatusLine();
+            Assert.assertEquals(statusLine,"HTTP/1.1 200 ");
+
+        //geting the college details for the college added for checking data added is correct or not
+        //object created of getApiResponse and pass in method id
+        GetApiResponse getApiResponse = url.setUpForGetCollegeCode("1125");
+        //status code is 200 passed
+        int statusCode2 = getApiResponse.getStatusCode();
+        Assert.assertEquals(statusCode2, 200);
+        // Get the status line from the Response in a variable called statusLine
+        String statusLine2 = getApiResponse.getStatusLine();
+        Assert.assertEquals(statusLine2, "HTTP/1.1 200 ");
+
+        //creating object of response and storing from the method response
+        Response response2 = getApiResponse.getResponse();
+        // JsonPath object created for response for geting JSON representation from response body
+        JsonPath jsonPathEvauator = response2.jsonPath();
+        // message response validate for expected values
+        String collegeCode = jsonPathEvauator.getString("collegeCode");
+        //validating code is 119 for whom we passed to get details
+        Assert.assertTrue(collegeCode.contains("1125"));
+
+        //validate other fields
+        String collegeName =jsonPathEvauator.getString("collegeName");
+        Assert.assertEquals(collegeName,"Imperial College Of Engineering");
+        String type = jsonPathEvauator.getString("type");
+        Assert.assertTrue(type.equals("PRIVATE"));
+        String approvedBy = jsonPathEvauator.getString("approvedBy");
+        System.out.println(approvedBy);
+        Assert.assertEquals(approvedBy, null);
+        String city = jsonPathEvauator.getString("city");
+        Assert.assertEquals(city, null);
+        String overview = jsonPathEvauator.getString("overview");
+        Assert.assertEquals(overview, null);
+        String awards = jsonPathEvauator.getString("awards");
+        Assert.assertEquals(awards, null);
+        String established = jsonPathEvauator.getString("established");
+        Assert.assertEquals(established, null);
+        String ranking = jsonPathEvauator.getString("ranking");
+        Assert.assertEquals(ranking, "0");
+        String contactNumber = jsonPathEvauator.getString("contactNumber");
+        Assert.assertTrue(contactNumber.equals("8989098099"));
+        String email = jsonPathEvauator.getString("email");
+        Assert.assertTrue(email.equals("mohit88@gmail.com"));
+        String mapLocation = jsonPathEvauator.getString("mapLocation");
+        Assert.assertEquals(mapLocation, null);
+        String responseBody = response2.getBody().prettyPrint();
+        Assert.assertTrue(responseBody.contains("address"));
+        String verified = jsonPathEvauator.getString("verified");
+        Assert.assertEquals(verified, null);
+        String facilities = jsonPathEvauator.getString("facilities");
+        Assert.assertEquals(facilities, null);
+        String noOfStudents = jsonPathEvauator.getString("noOfStudents");
+        Assert.assertEquals(noOfStudents, "0");
+        String courses = jsonPathEvauator.getString("courses");
+        Assert.assertEquals(courses, null);
+        String images = jsonPathEvauator.getString("images");
+        Assert.assertEquals(images, null);
+        String videos = jsonPathEvauator.getString("videos");
+        Assert.assertEquals(videos, null);
+        String placements = jsonPathEvauator.getString("placements");
+        Assert.assertEquals(placements, null);
+        String examsAccepted = jsonPathEvauator.getString("examsAccepted");
+        Assert.assertEquals(examsAccepted, null);
+        String collegeStatus = jsonPathEvauator.getString("collegeStatus");
+        Assert.assertEquals(collegeStatus, null);
+        String website = jsonPathEvauator.getString("website");
+        Assert.assertEquals(website, null);
+        String profileImage = jsonPathEvauator.getString("profileImage");
+        Assert.assertEquals(profileImage, null);
+        String placedStudents = jsonPathEvauator.getString("placedStudents");
+        Assert.assertEquals(placedStudents, "0");
+    }
 }

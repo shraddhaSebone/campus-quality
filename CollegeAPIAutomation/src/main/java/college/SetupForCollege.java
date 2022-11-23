@@ -35,4 +35,21 @@ public class SetupForCollege {
         return new GetApiResponse(response,response.getStatusCode(),response.statusLine()) ;
     }
 
+    public GetApiResponse setUpForGetCollegeCode(String collegeCode) {
+        /*
+         * @MethodName- setUpForGetCollegeCode
+         * @objective- to pass the entities that are required for the setup of getCollegeBycollegeCode api
+         * @para- String,object
+         * @returnType-object,int,string
+         */
+
+        //Specify the url
+        RestAssured.baseURI="http://13.232.186.165:8080/api/v1/campus/college/collegeCode";
+        RequestSpecification httprequest = RestAssured.given();
+        //passing method and url param in request and storing it in response
+        Response response = httprequest.request(Method.GET,collegeCode);
+        //returning response, statuscode, statusline
+        return new GetApiResponse(response,response.getStatusCode(),response.statusLine()) ;
+    }
+
 }
