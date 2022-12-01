@@ -39,13 +39,11 @@ public class RequestParamForAddCollege {
      * @returnType- JSONObject arraylist
      */
    public JSONObject getAddress(AddressDo addressDo){
-
        JSONObject addressObj = new JSONObject();
        addressObj.put("addressLine",addressDo.getAddressLine());
        addressObj.put("landmark",addressDo.getLandmark());
        addressObj.put("city",addressDo.getCity());
        addressObj.put("state",addressDo.getState().toString());
-
        return addressObj;
    }
 
