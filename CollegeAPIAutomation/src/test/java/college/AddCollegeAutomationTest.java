@@ -12,8 +12,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
 public class AddCollegeAutomationTest {
     /* @className- AddCollegeAutomationTest
      * @autherName- varsha Rane
@@ -597,8 +595,8 @@ public class AddCollegeAutomationTest {
         //Specify the url
         RestAssured.baseURI="http://13.232.186.165:8080/test/v1/campus/college";
         RequestSpecification httprequest = RestAssured.given();
-        RequestParam RequestParamsObj = new RequestParam();
-        JSONObject requestParam = RequestParamsObj.getRequestParamForAddCollege(addCollegeDo);
+        RequestParamForAddCollege requestParamsObjForAddCollege = new RequestParamForAddCollege();
+        JSONObject requestParam = requestParamsObjForAddCollege.getRequestParamForAddCollege(addCollegeDo);
         // to convert in string from json
         httprequest.body(requestParam.toJSONString());
         // passing content type in header
@@ -619,8 +617,8 @@ public class AddCollegeAutomationTest {
         //Specify the url
         RestAssured.baseURI="http://13.232.186.165:8080/API/v1/campus/college";
         RequestSpecification httprequest = RestAssured.given();
-        RequestParam RequestParamsObj = new RequestParam();
-        JSONObject requestParam = RequestParamsObj.getRequestParamForAddCollege(addCollegeDo);
+        RequestParamForAddCollege requestParamsObjForAddCollege = new RequestParamForAddCollege();
+        JSONObject requestParam = requestParamsObjForAddCollege.getRequestParamForAddCollege(addCollegeDo);
         // to convert in string from json
         httprequest.body(requestParam.toJSONString());
         // passing content type in header
@@ -642,8 +640,8 @@ public class AddCollegeAutomationTest {
         //Specify the url
         RestAssured.baseURI="http://13.232.186.165:8080/api/v1/campus/college";
         RequestSpecification httprequest = RestAssured.given();
-        RequestParam RequestParamsObj = new RequestParam();
-        JSONObject requestParam = RequestParamsObj.getRequestParamForAddCollege(addCollegeDo);
+        RequestParamForAddCollege requestParamsObjForAddCollege = new RequestParamForAddCollege();
+        JSONObject requestParam = requestParamsObjForAddCollege.getRequestParamForAddCollege(addCollegeDo);
         // to convert in string from json
         httprequest.body(requestParam.toJSONString());
         // passing content type in header
@@ -741,4 +739,5 @@ public class AddCollegeAutomationTest {
         String placedStudents = jsonPathEvauator.getString("placedStudents");
         Assert.assertEquals(placedStudents, "0");
     }
+
 }

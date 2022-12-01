@@ -2,11 +2,9 @@ package college;
 
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
-
-public class RequestParam {
+public class RequestParamForAddCollege {
     /*
-     * @ClassName- RequestParam
+     * @ClassName- RequestParamForAddCollege
      * @autherName- Varsha Rane
      * @Objective- passing the entities in the request parameters
      */

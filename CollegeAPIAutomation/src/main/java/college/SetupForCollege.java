@@ -23,8 +23,8 @@ public class SetupForCollege {
         //Specify the url
         RestAssured.baseURI="http://13.232.186.165:8080/api/v1/campus/college";
         RequestSpecification httprequest = RestAssured.given();
-        RequestParam RequestParamsObj = new RequestParam();
-        JSONObject requestParam = RequestParamsObj.getRequestParamForAddCollege(addCollegeDo);
+        RequestParamForAddCollege requestParamsObjForAddCollege = new RequestParamForAddCollege();
+        JSONObject requestParam = requestParamsObjForAddCollege.getRequestParamForAddCollege(addCollegeDo);
         // to convert in string from json
         httprequest.body(requestParam.toJSONString());
         // passing content type in header
@@ -52,4 +52,43 @@ public class SetupForCollege {
         return new GetApiResponse(response,response.getStatusCode(),response.statusLine()) ;
     }
 
+    public GetApiResponse setUpForGetCollegeList() {
+        /*
+         * @MethodName- setUpForGetCollegeCode
+         * @objective- to pass the entities that are required for the setup of getCollegeBycollegeCode api
+         * @para- String,object
+         * @returnType-object,int,string
+         */
+
+        //Specify the url
+        RestAssured.baseURI="http://13.232.186.165:8080/api/v1/campus/college";
+        RequestSpecification httprequest = RestAssured.given();
+        //passing method and url param in request and storing it in response
+        Response response = httprequest.request(Method.GET);
+        //returning response, statuscode, statusline
+        return new GetApiResponse(response,response.getStatusCode(),response.statusLine()) ;
+    }
+
+    public GetApiResponse setUpForUpdateCollege(UpdateCollegeDo updateCollegeDo){
+        /*
+         * @MethodName- setUpForUpdateCollege
+         * @objective- to pass the entities that are required for the setup of UpdateCollege api
+         * @para- String,object
+         * @returnType-object,int,string
+         */
+
+        //Specify the url
+        RestAssured.baseURI="http://13.232.186.165:8080/api/v1/campus/college";
+        RequestSpecification httprequest = RestAssured.given();
+        RequestParamForUpdateCollege requestParamsObjForUpdateCollege = new RequestParamForUpdateCollege();
+        JSONObject requestParam = requestParamsObjForUpdateCollege.getRequestParamForUpdateCollege(updateCollegeDo);
+        // to convert in string from json
+        httprequest.body(requestParam.toJSONString());
+        // passing content type in header
+        httprequest.header("Content-Type", "application/json");
+        //passing method and url param in request and storing it in response
+        Response response = httprequest.request(Method.PUT);
+        //returning response, statuscode, statusline
+        return new GetApiResponse(response,response.getStatusCode(),response.statusLine()) ;
+    }
 }
