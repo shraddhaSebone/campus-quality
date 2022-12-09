@@ -91,4 +91,27 @@ public class SetupForCollege {
         //returning response, statuscode, statusline
         return new GetApiResponse(response,response.getStatusCode(),response.statusLine()) ;
     }
+
+    public GetApiResponse setUpForUpdatePartialCollege(UpdateCollegeDetailsPartialDo updateCollegeDetailsPartialDo,String collegeCode){
+        /*
+         * @MethodName- setUpForUpdatePartialCollege
+         * @objective- to pass the entities that are required for the setup of UpdatePartialCollege api
+         * @para- String,object
+         * @returnType-object,int,string
+         */
+
+        //Specify the url
+        RestAssured.baseURI ="http://13.232.186.165:8080/api/v1/campus/college/update/collegeCode";
+        RequestSpecification httprequest = RestAssured.given();
+        RequestParamForPartialUpdate requestParamForPartialUpdate = new RequestParamForPartialUpdate();
+        JSONObject requestParamObj = requestParamForPartialUpdate.getRequestParamForPartialUpdate(updateCollegeDetailsPartialDo);
+        //to convert in string from json
+        httprequest.body(requestParamObj.toJSONString());
+        //passing content-type  in header
+        httprequest.header("Content-Type","application/json");
+        //passing method and url param in request and storing it in response.
+        Response response = httprequest.request(Method.PATCH,collegeCode);
+        //returning response, statuscode,statusline
+        return new GetApiResponse(response,response.getStatusCode(),response.getStatusLine());
+    }
 }

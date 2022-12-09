@@ -740,4 +740,33 @@ public class AddCollegeAutomationTest {
         Assert.assertEquals(placedStudents, "0");
     }
 
+    //@MethodObjective- Check if on adding the collage code and email registered then  with the new collegecode try to register showing error message and status code.
+    @Test(priority = 5)
+    public void checkAlreadyAddedEmailWithCodeResponse() {
+        //creating object of the Do class
+        AddCollegeDo addCollegeDo = new AddCollegeDo();
+        //college code is unique so it need to be change everytime
+        addCollegeDo.setCollegeCode("6092");
+        addCollegeDo.setEmail("Mohit921@gmail.com");
+        GetApiResponse response = url.setUpForAddCollege(addCollegeDo);
+        int statusCode = response.getResponse().getStatusCode();
+        Assert.assertEquals(200,statusCode);
+
+       //again adding college with same college code
+        addCollegeDo.setCollegeCode("6093");
+       // addCollegeDo.setEmail("Mohit921@gmail.com");
+        //creating object of getApi response class for passing url and object of Do
+        GetApiResponse alreadyAddedResponse = url.setUpForAddCollege(addCollegeDo);
+        int statusCode2 = alreadyAddedResponse.getStatusCode();
+        Assert.assertEquals(400,statusCode2);
+        //errorcode, errormessage and detailedMessage assertion for the messages
+        JsonPath jsonPathEvauator = alreadyAddedResponse.getResponse().jsonPath();
+        String errorCode = jsonPathEvauator.getString("errorCode");
+        Assert.assertTrue(errorCode.equals("BAD_REQUEST"));
+        String errorMessage = jsonPathEvauator.getString("errorMessage");
+        Assert.assertTrue(errorMessage.equals("Op's something went wrong, Don't worry we are figuring out"));
+        String detailedMessage = jsonPathEvauator.getString("detailedMessage");
+        Assert.assertTrue(detailedMessage.equals("User Already Exist!"));
+    }
+
 }
