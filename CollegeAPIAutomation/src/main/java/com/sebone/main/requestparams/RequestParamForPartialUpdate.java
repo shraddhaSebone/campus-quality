@@ -1,5 +1,5 @@
-package college;
-
+package com.sebone.main.requestparams;
+import com.sebone.main.data.UpdateCollegeDetailsPartialDo;
 import org.json.simple.JSONObject;
 
 public class RequestParamForPartialUpdate {

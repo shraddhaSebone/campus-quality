@@ -1,5 +1,6 @@
-package college;
+package com.sebone.main;
 
+import com.sebone.main.college.SetupForCollege;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
@@ -10,6 +11,7 @@ import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import com.sebone.main.response.GetApiResponse;
 
 public class GetCollegeListAutomationTest {
     /*
@@ -33,7 +35,7 @@ public class GetCollegeListAutomationTest {
       GetApiResponse getApiResponse =url.setUpForGetCollegeList();
       int statusCode = getApiResponse.getStatusCode();
       // status code is 200 passed
-      Assert.assertEquals(statusCode,"200");
+      Assert.assertEquals(statusCode,200);
       // Get the status line from the Response in a variable called statusLine
       String statusLine = getApiResponse.getStatusLine();
       Assert.assertEquals(statusLine,"HTTP/1.1 200 ");

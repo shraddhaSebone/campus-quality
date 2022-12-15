@@ -1,4 +1,4 @@
-package college;
+package com.sebone.main.data;
 /*
  * @className- State
  * @objective- defining enum for the state entity in AddressDo
@@ -39,14 +39,5 @@ public enum State {
     LADAKH,
     LAKSHADWEEP,
     JAMMU_AND_KASHMIR,
-    PUDUCHERRY,
-    EMPTY("");
-
-    final String empty;
-    State(String name) { this.empty = name; }
-    State() { this(null); }
-    @Override
-    public String toString() {
-        return empty == null ? super.toString() : empty;
-    }
+    PUDUCHERRY
 }

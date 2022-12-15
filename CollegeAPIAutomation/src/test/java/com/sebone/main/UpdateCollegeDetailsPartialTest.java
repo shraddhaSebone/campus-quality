@@ -1,17 +1,20 @@
-package college;
+package com.sebone.main;
 
+import com.sebone.main.college.SetupForCollege;
+import com.sebone.main.data.UpdateCollegeDetailsPartialDo;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.apache.commons.lang3.ObjectUtils;
 import org.hamcrest.Matchers;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import com.sebone.main.requestparams.RequestParamForPartialUpdate;
+import com.sebone.main.response.GetApiResponse;
 
 public class UpdateCollegeDetailsPartialTest {
     /*

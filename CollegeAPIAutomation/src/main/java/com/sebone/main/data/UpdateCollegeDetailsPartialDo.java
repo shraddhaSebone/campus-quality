@@ -1,4 +1,4 @@
-package college;
+package com.sebone.main.data;
 
 public class UpdateCollegeDetailsPartialDo {
     /*
@@ -19,6 +19,16 @@ public class UpdateCollegeDetailsPartialDo {
     private String overview;
     private String awards;
     private String website;
+
+//    public UpdateCollegeDetailsPartialDo(UpdateCollegeDetailsPartialDo updateCollegeDetailsPartialDo) {
+//        this.collegeCode=updateCollegeDetailsPartialDo.getCollegeCode();
+//        this.awards= updateCollegeDetailsPartialDo.getEmail();
+//    }
+
+    public UpdateCollegeDetailsPartialDo(String collegeCode, String email) {
+        this.collegeCode = collegeCode;
+        this.email = email;
+    }
 
     //getter setter for variables
     public String getCollegeCode() {
@@ -106,21 +116,6 @@ public class UpdateCollegeDetailsPartialDo {
     }
 
     public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    //constructor
-    public UpdateCollegeDetailsPartialDo(String collegeCode, String collegeName, String city, Integer ranking, String contactNumber, String email, int noOfStudents, int placedStudents, String overview, String awards, String website) {
-        this.collegeCode = collegeCode;
-        this.collegeName = collegeName;
-        this.city = city;
-        this.ranking = ranking.intValue();
-        this.contactNumber = contactNumber;
-        this.email = email;
-        this.noOfStudents = noOfStudents;
-        this.placedStudents = placedStudents;
-        this.overview = overview;
-        this.awards = awards;
         this.website = website;
     }
 

@@ -1,5 +1,10 @@
-package college;
+package com.sebone.main;
 
+import com.sebone.main.college.SetupForCollege;
+import com.sebone.main.data.AddCollegeDo;
+import com.sebone.main.data.AddressDo;
+import com.sebone.main.data.State;
+import com.sebone.main.data.Type;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
@@ -11,6 +16,8 @@ import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import com.sebone.main.requestparams.RequestParamForAddCollege;
+import com.sebone.main.response.GetApiResponse;
 
 public class AddCollegeAutomationTest {
     /* @className- AddCollegeAutomationTest
@@ -30,7 +37,8 @@ public class AddCollegeAutomationTest {
     public void verifyAddCollege(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
         //college code is unique so it need to be change everytime
-        addCollegeDo.setCollegeCode("125");
+        addCollegeDo.setCollegeCode("6098");
+        addCollegeDo.setEmail("var@99gmail.com");
         GetApiResponse response = url.setUpForAddCollege(addCollegeDo);
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode,200);
@@ -42,7 +50,8 @@ public class AddCollegeAutomationTest {
     @Test(priority = 2)
     public void verifyContentType(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setCollegeCode("127");
+        addCollegeDo.setCollegeCode("6099");
+        addCollegeDo.setEmail("shreya99@hotmail.com");
         GetApiResponse response = url.setUpForAddCollege(addCollegeDo);
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode,200);
@@ -57,6 +66,8 @@ public class AddCollegeAutomationTest {
     @Test(priority = 3)
     public void verifyResponseTime() {
         AddCollegeDo addCollegeDo = new AddCollegeDo();
+        addCollegeDo.setCollegeCode("6099");
+        addCollegeDo.setEmail("shreya99@hotmail.com");
         GetApiResponse getApiResponse = url.setUpForAddCollege(addCollegeDo);
         // obtain ValidatableResponse type
         ValidatableResponse resType = getApiResponse.getResponse().then();
@@ -69,7 +80,8 @@ public class AddCollegeAutomationTest {
     public void verifyAddCollegeResponseBody(){
         //creating object of the DO class
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setCollegeCode("135");
+        addCollegeDo.setCollegeCode("6100");
+        addCollegeDo.setEmail("shreya991@hotmail.com");
         //creating object created for response
         GetApiResponse getApiResponse = url.setUpForAddCollege(addCollegeDo);
         // JsonPath object created for response
@@ -88,14 +100,15 @@ public class AddCollegeAutomationTest {
     public void checkAlreadyAddedResponse() {
         //creating object of the Do class
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setCollegeCode("138");
+        addCollegeDo.setCollegeCode("6102");
+        addCollegeDo.setEmail("shreya993@hotmail.com");
         //creating object of getApi response class for passing url and object of Do
         GetApiResponse getApiResponse = url.setUpForAddCollege(addCollegeDo);
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(200,statusCode);
 
         //again adding college with same college code
-        addCollegeDo.setCollegeCode("138");
+        addCollegeDo.setCollegeCode("6102");
         //creating object of getApi response class for passing url and object of Do
         GetApiResponse alreadyAddedResponse = url.setUpForAddCollege(addCollegeDo);
         int statusCode2 = alreadyAddedResponse.getStatusCode();
@@ -155,7 +168,8 @@ public class AddCollegeAutomationTest {
     public void validateCollegeLength(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
         addCollegeDo.setCollegeName("Ihhgfvbnnjjkjhhhjjjnfgthgtgrrgfdgvfrfbfbgfbgfbfgbgfbvfvb  bbv b njnhbgtfnhhyggyyhhjnygnhnghuknhkuhghjhbhjhkjkjkjkhkhihuihuikjljklnklkkkjjjjjjjjjjjlkkluihuihuikiujhjhjkuyyyiufvtrdfgjgykuijghnyuhj");
-        addCollegeDo.setCollegeCode("026");
+        addCollegeDo.setCollegeCode("6103");
+        addCollegeDo.setEmail("shreya994@hotmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(200,statusCode);
@@ -174,7 +188,9 @@ public class AddCollegeAutomationTest {
     @Test(priority=9)
     public void checkCollegeCodeWithSpecialCharacter(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
+        addCollegeDo.setCollegeName("Rgpv");
         addCollegeDo.setCollegeCode("@$#");
+        addCollegeDo.setEmail("shreya@99gmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(400,statusCode);
@@ -200,9 +216,11 @@ public class AddCollegeAutomationTest {
     @Test(priority=11)
     public void checkTypeIsPrivate(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setType(Type.PRIVATE);
-        addCollegeDo.setCollegeCode("157");
+      //  addCollegeDo.setType(Type.PRIVATE);
+        addCollegeDo.setCollegeCode("6105");
+        addCollegeDo.setEmail("shreya997@hotmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
+        getApiResponse.getResponse().prettyPrint();
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(200,statusCode);
         // JsonPath object created for response
@@ -222,7 +240,8 @@ public class AddCollegeAutomationTest {
     public void checkTypeAsGovt(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
         addCollegeDo.setType(Type.GOVERNMENT);
-        addCollegeDo.setCollegeCode("156");
+        addCollegeDo.setCollegeCode("@$#");
+        addCollegeDo.setEmail("shreya@99gmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(200,statusCode);
@@ -237,15 +256,15 @@ public class AddCollegeAutomationTest {
         Assert.assertTrue(responseBody.contains("email"));
     }
 
-    //@MethodObjective-Check if the type is passed as null or empty then whats the response.
-    @Test(priority=11)
-    public void checkTypeAsNull() {
-        AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setType(Type.EMPTY);
-        GetApiResponse getApiResponse = url.setUpForAddCollege(addCollegeDo);
-        int statusCode = getApiResponse.getStatusCode();
-        Assert.assertEquals(400, statusCode);
-    }
+//    //@MethodObjective-Check if the type is passed as null or empty then whats the response.
+//    @Test(priority=11)
+//    public void checkTypeAsNull() {
+//        AddCollegeDo addCollegeDo = new AddCollegeDo();
+//        addCollegeDo.setType(Type);
+//        GetApiResponse getApiResponse = url.setUpForAddCollege(addCollegeDo);
+//        int statusCode = getApiResponse.getStatusCode();
+//        Assert.assertEquals(400, statusCode);
+//    }
     //@MethodObjective- Check if the email is not passed then whats the error response.
      @Test(priority=12)
     public void checkEmptyEmailPassed(){
@@ -284,20 +303,6 @@ public class AddCollegeAutomationTest {
         JsonPath jsonPathEvaluator = getApiResponse.getResponse().jsonPath();
         String email =  jsonPathEvaluator.getString("email");
         Assert.assertTrue(email.equals("Not a valid email"));
-    }
-
-    //@MethodObjective- Check if the state is not accepting other values than null
-    @Test(priority =14)
-    public void checkStateAsNull() {
-        //object of addCollege is created
-        AddCollegeDo addCollegeDo = new AddCollegeDo();
-        //obj of address is created for passing all its value in addCollegeDo
-        AddressDo addressDo = new AddressDo("barud phatha","magriya","khargone",State.EMPTY);
-        addCollegeDo.setAddressDoObj(addressDo);
-        GetApiResponse getApiResponse = url.setUpForAddCollege(addCollegeDo);
-        System.out.println(getApiResponse.getResponse().prettyPrint());
-        int statusCode = getApiResponse.getStatusCode();
-        Assert.assertEquals(400, statusCode);
     }
 
     //@MethodObjective- Check if the state is accepting all the enum defined for the state.
@@ -767,6 +772,28 @@ public class AddCollegeAutomationTest {
         Assert.assertTrue(errorMessage.equals("Op's something went wrong, Don't worry we are figuring out"));
         String detailedMessage = jsonPathEvauator.getString("detailedMessage");
         Assert.assertTrue(detailedMessage.equals("User Already Exist!"));
+    }
+
+    //@MethodObjective- Check if on adding the college with college code and email limit is excit for email then message is shown or not "Exceeded daily email limit for the operation or the account. If a higher limit is required, please configure your user pool to use your own Amazon SES configuration for sending email.(emails- 100)
+    @Test(priority = 5)
+    public void checkEmailLimitExceedResponse() {
+        //creating object of the Do class
+        AddCollegeDo addCollegeDo = new AddCollegeDo();
+        //college code is unique so it need to be change everytime
+        addCollegeDo.setCollegeCode("6201");
+        addCollegeDo.setEmail("Mohit922@gmail.com");
+        GetApiResponse response = url.setUpForAddCollege(addCollegeDo);
+        int statusCode = response.getResponse().getStatusCode();
+        Assert.assertEquals(500,statusCode);
+        //errorcode, errormessage and detailedMessage assertion for the messages
+        JsonPath jsonPathEvauator = response.getResponse().jsonPath();
+        String errorCode = jsonPathEvauator.getString("errorCode");
+        Assert.assertTrue(errorCode.equals("INTERNAL_SERVER_ERROR"));
+        String errorMessage = jsonPathEvauator.getString("errorMessage");
+        Assert.assertTrue(errorMessage.equals("Op's Something went wrong!"));
+        String detailedMessage = jsonPathEvauator.getString("detailedMessage");
+        System.out.println(detailedMessage);
+        Assert.assertTrue(detailedMessage.contains("Exceeded daily email limit for the operation or the account. If a higher limit is required, please configure your user pool to use your own Amazon SES configuration for sending email. (Service: AWSCognitoIdentityProvider; Status Code: 400; Error Code: LimitExceededException; Request ID: "));
     }
 
 }

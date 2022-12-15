@@ -1,4 +1,4 @@
-package college;
+package com.sebone.main.data;
 
 public class AddressDo {
    /*

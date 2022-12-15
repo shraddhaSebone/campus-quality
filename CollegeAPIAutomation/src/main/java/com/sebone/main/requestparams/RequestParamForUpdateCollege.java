@@ -1,5 +1,8 @@
-package college;
-
+package com.sebone.main.requestparams;
+import com.sebone.main.data.AddressDo;
+import com.sebone.main.data.CoursesDo;
+import com.sebone.main.data.PlacementsDo;
+import com.sebone.main.data.UpdateCollegeDo;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;

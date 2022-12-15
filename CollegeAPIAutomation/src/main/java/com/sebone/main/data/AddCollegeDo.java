@@ -1,4 +1,4 @@
-package college;
+package com.sebone.main.data;
 
 public class AddCollegeDo {
     /*
@@ -92,6 +92,6 @@ public class AddCollegeDo {
         contactNumber ="8989098099";
         password="Test@123";
         collegeCode="113";
-        addressDoObj = new AddressDo("Borawan","Ravindra nagar","Khargone",State.ARUNACHAL_PRADESH);
+        addressDoObj = new AddressDo("Borawan","Ravindra nagar","Khargone", State.ARUNACHAL_PRADESH);
     }
 }

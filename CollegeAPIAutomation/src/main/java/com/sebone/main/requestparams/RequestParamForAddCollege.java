@@ -1,5 +1,6 @@
-package college;
-
+package com.sebone.main.requestparams;
+import com.sebone.main.data.AddCollegeDo;
+import com.sebone.main.data.AddressDo;
 import org.json.simple.JSONObject;
 
 public class RequestParamForAddCollege {

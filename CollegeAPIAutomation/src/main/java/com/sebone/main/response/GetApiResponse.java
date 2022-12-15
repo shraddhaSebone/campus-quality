@@ -1,4 +1,4 @@
-package college;
+package com.sebone.main.response;
 
 import io.restassured.response.Response;
 

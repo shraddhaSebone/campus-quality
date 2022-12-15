@@ -1,5 +1,7 @@
-package college;
+package com.sebone.main;
 
+import com.sebone.main.college.SetupForCollege;
+import com.sebone.main.data.AddCollegeDo;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
@@ -10,6 +12,7 @@ import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import com.sebone.main.response.GetApiResponse;
 
 public class GetCollegeByCollegeCodeTest {
     /*
