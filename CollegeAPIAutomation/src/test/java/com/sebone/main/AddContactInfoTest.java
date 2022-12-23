@@ -3,18 +3,13 @@ package com.sebone.main;
 import com.sebone.main.college.SetupForCollege;
 import com.sebone.main.data.AddCollegeDo;
 import com.sebone.main.data.AddContactDo;
-import com.sebone.main.data.UpdateCollegeDo;
 import com.sebone.main.requestparams.RequestParamForAddContactInfo;
-import com.sebone.main.requestparams.RequestParamForUpdateCollege;
 import com.sebone.main.response.GetApiResponse;
 import io.restassured.RestAssured;
-import io.restassured.filter.Filter;
-import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.MultiPartSpecification;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
 import org.json.simple.JSONObject;
@@ -22,19 +17,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.awt.*;
-import java.io.File;
 import java.io.Serializable;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static io.restassured.config.EncoderConfig.encoderConfig;
-import static io.restassured.http.ContentType.TEXT;
 
 public class AddContactInfoTest implements Serializable {
     /* @className- AddContactInfoTest
@@ -56,11 +42,12 @@ public class AddContactInfoTest implements Serializable {
         AddContactDo addContactDo = new AddContactDo();
         //college code is unique so it need to be change everytime
         addContactDo.setFirstName("Shreya");
-        addContactDo.setEmail("var@99gmail.com");
+        addContactDo.setEmail("varrane99@gmail.com");
         addContactDo.setLastName("Paliwal");
         addContactDo.setContactNumber("8425970700");
         addContactDo.setMessage("For Khandwa #$% 123 college");
         GetApiResponse response = url.setUpForAddContactInfo(addContactDo,"111");
+        System.out.println(response.getResponse().prettyPrint());
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode,200);
         String statusLine= response.getStatusLine();
@@ -486,4 +473,5 @@ public class AddContactInfoTest implements Serializable {
         int statusCode3 =  getApiResponse3.getStatusCode();
         Assert.assertEquals(statusCode3, 200);
     }
+
 }

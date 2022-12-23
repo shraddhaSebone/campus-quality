@@ -33,7 +33,7 @@ public class GetCollegeByCollegeCodeTest {
     @Test(priority=1)
     public void verifyCorrectCodeResponse() {
         //object created of getApiResponse and pass in method code
-        GetApiResponse getApiResponse = url.setUpForGetCollegeCode("119");
+        GetApiResponse getApiResponse = url.setUpForGetCollegeCode("111");
         //status code is 200 passed
         int statusCode =  getApiResponse.getStatusCode();
         Assert.assertEquals(statusCode, 200);

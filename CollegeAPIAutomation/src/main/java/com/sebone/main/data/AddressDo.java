@@ -10,6 +10,7 @@ public class AddressDo {
    private String city;
    private State state;
 
+
    //getter setter for the variables
    public String getAddressLine() {
       return addressLine;
@@ -49,5 +50,12 @@ public class AddressDo {
       this.landmark = landmark;
       this.city = city;
       this.state = state;
+   }
+
+   public AddressDo() {
+      this.addressLine = "Ramanand Nagar";
+      this.city = "Jalgoan";
+      this.landmark = "Near SAI temple";
+      this.state = State.MAHARASHTRA;
    }
 }

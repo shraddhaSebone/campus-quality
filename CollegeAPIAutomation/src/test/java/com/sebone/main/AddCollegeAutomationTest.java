@@ -195,8 +195,8 @@ public class AddCollegeAutomationTest {
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(400,statusCode);
         JsonPath jsonPathEvaluator = getApiResponse.getResponse().jsonPath();
-        String collegeName =  jsonPathEvaluator.getString("collegeName");
-        Assert.assertTrue(collegeName.equals("College Name Should Be Valid!"));
+        String collegeCode =  jsonPathEvaluator.getString("collegeCode");
+        Assert.assertTrue(collegeCode.equals("CollegeCode Should Be Valid!"));
     }
 
     //@MethodObjective- Check if the collegeCode is not accepting any alphabets in it.
@@ -216,9 +216,9 @@ public class AddCollegeAutomationTest {
     @Test(priority=11)
     public void checkTypeIsPrivate(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-      //  addCollegeDo.setType(Type.PRIVATE);
-        addCollegeDo.setCollegeCode("6105");
-        addCollegeDo.setEmail("shreya997@hotmail.com");
+        addCollegeDo.setType(Type.PRIVATE);
+        addCollegeDo.setCollegeCode("6107");
+        addCollegeDo.setEmail("shreya97@hotmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
         getApiResponse.getResponse().prettyPrint();
         int statusCode = getApiResponse.getStatusCode();
@@ -240,8 +240,8 @@ public class AddCollegeAutomationTest {
     public void checkTypeAsGovt(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
         addCollegeDo.setType(Type.GOVERNMENT);
-        addCollegeDo.setCollegeCode("@$#");
-        addCollegeDo.setEmail("shreya@99gmail.com");
+        addCollegeDo.setCollegeCode("7865");
+        addCollegeDo.setEmail("shreya92@gmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(200,statusCode);
@@ -265,6 +265,7 @@ public class AddCollegeAutomationTest {
 //        int statusCode = getApiResponse.getStatusCode();
 //        Assert.assertEquals(400, statusCode);
 //    }
+
     //@MethodObjective- Check if the email is not passed then whats the error response.
      @Test(priority=12)
     public void checkEmptyEmailPassed(){
@@ -310,7 +311,8 @@ public class AddCollegeAutomationTest {
     public void checkCorrectState() {
         //object of addCollege is created
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setCollegeCode("201");
+        addCollegeDo.setCollegeCode("6020");
+        addCollegeDo.setEmail("mohit992@gmail.com");
         //obj of address is created for passing all its value in addCollegeDo
         AddressDo addressDo = new AddressDo("barud phatha","magriya","khargone",State.ARUNACHAL_PRADESH);
         addCollegeDo.setAddressDoObj(addressDo);
@@ -334,7 +336,8 @@ public class AddCollegeAutomationTest {
    public void validationForAddressObj() {
        //object of addCollege is created
        AddCollegeDo addCollegeDo = new AddCollegeDo();
-       addCollegeDo.setCollegeCode("199");
+       addCollegeDo.setCollegeCode("6021");
+       addCollegeDo.setEmail("mohit993@gmail.com");
        //obj of address is created for passing all its value in addCollegeDo
        AddressDo addressDo = new AddressDo("$barud ^phatha","56magr*iya","%khar-gon67e",State.ARUNACHAL_PRADESH);
        addCollegeDo.setAddressDoObj(addressDo);
@@ -500,31 +503,24 @@ public class AddCollegeAutomationTest {
         Assert.assertTrue(password.equals("Password Should Be Valid!"));
     }
 
-    //@MethodObjective- Check if the password is  accepting upto 10 digits of characters.
+    //@MethodObjective- Check if the password is  accepting upto 8 digits of characters.
     @Test(priority=27)
     public void checkPasswordMaxlength(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setPassword("Test@12787");
-         addCollegeDo.setCollegeCode("1112");
+        addCollegeDo.setPassword("Test@1239");
+         addCollegeDo.setCollegeCode("78681");
+         addCollegeDo.setEmail("shreya91@gmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(200,statusCode);
-        // JsonPath object created for response
-        Response response = getApiResponse.getResponse();
-        String responseBody =response.getBody().prettyPrint();
-        Assert.assertTrue(responseBody.contains("collegeName"));
-        Assert.assertTrue(responseBody.contains("type"));
-        Assert.assertTrue(responseBody.contains("email"));
-        Assert.assertTrue(responseBody.contains("address"));
-        Assert.assertTrue(responseBody.contains("collegeCode"));
-        Assert.assertTrue(responseBody.contains("email"));
     }
 
     //@MethodObjective-Check if the password is not displayed in response.
     @Test(priority=28)
     public void checkPasswordDisplayedInResponse(){
         AddCollegeDo addCollegeDo = new AddCollegeDo();
-        addCollegeDo.setCollegeCode("1114");
+        addCollegeDo.setCollegeCode("6024");
+        addCollegeDo.setEmail("mohit997@gmail.com");
         GetApiResponse getApiResponse =url.setUpForAddCollege(addCollegeDo);
         int statusCode = getApiResponse.getStatusCode();
         Assert.assertEquals(200,statusCode);
@@ -667,7 +663,8 @@ public class AddCollegeAutomationTest {
            //college added for college code
             AddCollegeDo addCollegeDo = new AddCollegeDo();
             //college code is unique so it need to be change everytime
-            addCollegeDo.setCollegeCode("1125");
+            addCollegeDo.setCollegeCode("7128");
+            addCollegeDo.setEmail("Mohit862@gmail.com");
             GetApiResponse response = url.setUpForAddCollege(addCollegeDo);
             int statusCode = response.getStatusCode();
             Assert.assertEquals(statusCode,200);
@@ -676,7 +673,7 @@ public class AddCollegeAutomationTest {
 
         //geting the college details for the college added for checking data added is correct or not
         //object created of getApiResponse and pass in method id
-        GetApiResponse getApiResponse = url.setUpForGetCollegeCode("1125");
+        GetApiResponse getApiResponse = url.setUpForGetCollegeCode("7128");
         //status code is 200 passed
         int statusCode2 = getApiResponse.getStatusCode();
         Assert.assertEquals(statusCode2, 200);
@@ -691,7 +688,7 @@ public class AddCollegeAutomationTest {
         // message response validate for expected values
         String collegeCode = jsonPathEvauator.getString("collegeCode");
         //validating code is 119 for whom we passed to get details
-        Assert.assertTrue(collegeCode.contains("1125"));
+        Assert.assertTrue(collegeCode.contains("7128"));
 
         //validate other fields
         String collegeName =jsonPathEvauator.getString("collegeName");
@@ -714,7 +711,7 @@ public class AddCollegeAutomationTest {
         String contactNumber = jsonPathEvauator.getString("contactNumber");
         Assert.assertTrue(contactNumber.equals("8989098099"));
         String email = jsonPathEvauator.getString("email");
-        Assert.assertTrue(email.equals("mohit88@gmail.com"));
+        Assert.assertTrue(email.equals("Mohit862@gmail.com"));
         String mapLocation = jsonPathEvauator.getString("mapLocation");
         Assert.assertEquals(mapLocation, null);
         String responseBody = response2.getBody().prettyPrint();
@@ -751,15 +748,15 @@ public class AddCollegeAutomationTest {
         //creating object of the Do class
         AddCollegeDo addCollegeDo = new AddCollegeDo();
         //college code is unique so it need to be change everytime
-        addCollegeDo.setCollegeCode("6092");
-        addCollegeDo.setEmail("Mohit921@gmail.com");
+        addCollegeDo.setCollegeCode("70588");
+        addCollegeDo.setEmail("Mohit9361@gmail.com");
         GetApiResponse response = url.setUpForAddCollege(addCollegeDo);
         int statusCode = response.getResponse().getStatusCode();
         Assert.assertEquals(200,statusCode);
 
        //again adding college with same college code
-        addCollegeDo.setCollegeCode("6093");
-       // addCollegeDo.setEmail("Mohit921@gmail.com");
+        addCollegeDo.setCollegeCode("78589");
+      // addCollegeDo.setEmail("Mohit921@gmail.com");
         //creating object of getApi response class for passing url and object of Do
         GetApiResponse alreadyAddedResponse = url.setUpForAddCollege(addCollegeDo);
         int statusCode2 = alreadyAddedResponse.getStatusCode();
