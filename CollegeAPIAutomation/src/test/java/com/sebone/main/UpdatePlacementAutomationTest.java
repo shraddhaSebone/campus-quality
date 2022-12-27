@@ -45,7 +45,6 @@ public class UpdatePlacementAutomationTest {
         updatePlacementDo.setBranch("CSE");
         updatePlacementDo.setCourse("Mtech");
         updatePlacementDo.setCompanyName("Beckman coulter");
-       // updatePlacementDo.setPlacementId(22);
         GetApiResponse getApiResponse = collegeCode.setUpForUpdatePlacement(updatePlacementDo,"111");
         int statusCode= getApiResponse.getResponse().statusCode();
         Assert.assertEquals(200,statusCode);
@@ -333,7 +332,6 @@ public class UpdatePlacementAutomationTest {
     public void checkResponseForStringNoOfStudents() {
         UpdatePlacementDo updatePlacementDo = new UpdatePlacementDo();
           updatePlacementDo.setNoOfStudents("fdbf");
-        //updatePlacementDo.setPassingYear("ccdc");
         updatePlacementDo.setPlacementId(451);
         GetApiResponse response = collegeCode.setUpForUpdatePlacement(updatePlacementDo, "111");
         Assert.assertEquals(response.getStatusCode(),400);

@@ -8,9 +8,7 @@ public class UpdatePlacementDo {
     private String noOfStudents;
     private int placementId;
 
-    //getter setter for the placement
-
-
+    //getter setter for the update placementdo with (placementId)
     public int getPlacementId() {
         return placementId;
     }

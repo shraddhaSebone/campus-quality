@@ -28,7 +28,7 @@ public class RequestParamForUpdatePlacement {
         requestParamForUpdatePlacement.put("noOfStudents",updatePlacementDo.getNoOfStudents());
         requestParamForUpdatePlacement.put("placementId",updatePlacementDo.getPlacementId());
 
-        //returning jsonObject
+        //returning jsonObject of the updatePlacement api
         return requestParamForUpdatePlacement;
     }
 }
