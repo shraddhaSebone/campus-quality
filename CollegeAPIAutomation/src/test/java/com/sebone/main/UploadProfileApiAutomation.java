@@ -102,4 +102,22 @@ public class UploadProfileApiAutomation {
                 .post("upload/profile/111/lab");
         Assert.assertEquals(400,response.getStatusCode());
     }
+
+    // @MethodObjective- the objective of this method is to test if the response time of the api is less then 1 sec.
+    @Test(priority=4)
+    public void validateResponseTime() {
+        Map<String, Object> profileImageMap = new HashMap<>();
+        profileImageMap.put("image", new File("C:/Users/Varsha Rane/OneDrive/Pictures/bug login1.png"));
+        RestAssured.baseURI ="http://13.232.186.165:8080/api/v1/campus/college/upload/profile/111/lab";
+        given().log().all().config(RestAssured.config().encoderConfig(encoderConfig().defaultContentCharset("UTF-8")))
+                .header("Content-Type", "multipart/form-data")
+                .header("Accept-Encoding","gzip, deflate, br")
+                .header("Connection", "keep-alive")
+                .body(profileImageMap.toString())
+                .multiPart("image", new File("C:/Users/Varsha Rane/OneDrive/Pictures/bug login1.png"))
+                .when()
+                .post("upload/profile/111/lab").then().time(Matchers.lessThan(3000L));
+    }
+
+
 }

@@ -743,7 +743,7 @@ public class AddCollegeAutomationTest {
     }
 
     //@MethodObjective- Check if on adding the collage code and email registered then  with the new collegecode try to register showing error message and status code.
-    @Test(priority = 5)
+    @Test(priority = 35)
     public void checkAlreadyAddedEmailWithCodeResponse() {
         //creating object of the Do class
         AddCollegeDo addCollegeDo = new AddCollegeDo();
@@ -772,7 +772,7 @@ public class AddCollegeAutomationTest {
     }
 
     //@MethodObjective- Check if on adding the college with college code and email limit is excit for email then message is shown or not "Exceeded daily email limit for the operation or the account. If a higher limit is required, please configure your user pool to use your own Amazon SES configuration for sending email.(emails- 100)
-    @Test(priority = 5)
+    @Test(priority = 36)
     public void checkEmailLimitExceedResponse() {
         //creating object of the Do class
         AddCollegeDo addCollegeDo = new AddCollegeDo();
@@ -792,5 +792,6 @@ public class AddCollegeAutomationTest {
         System.out.println(detailedMessage);
         Assert.assertTrue(detailedMessage.contains("Exceeded daily email limit for the operation or the account. If a higher limit is required, please configure your user pool to use your own Amazon SES configuration for sending email. (Service: AWSCognitoIdentityProvider; Status Code: 400; Error Code: LimitExceededException; Request ID: "));
     }
+
 
 }

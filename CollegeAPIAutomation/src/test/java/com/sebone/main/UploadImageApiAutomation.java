@@ -38,7 +38,7 @@ public class UploadImageApiAutomation {
         Assert.assertEquals(201,response.getStatusCode());
         Assert.assertEquals(response.getResponse().contentType(),"application/json");
         String jsonStringResponse = response.getResponse().asString();
-     // Assert.assertTrue(jsonStringResponse.equals("{\"lab\": \"https://s3.ap-south-1.amazonaws.com/campus-data-sebone/jit/Profile/lab/50d153aa-0bb5-40b8-b65e-6f05d2fed55b.jpg\"}"));
+        Assert.assertTrue(jsonStringResponse.equals("{\"lab\": \"https://s3.ap-south-1.amazonaws.com/campus-data-sebone/jit/Profile/lab/50d153aa-0bb5-40b8-b65e-6f05d2fed55b.jpg\"}"));
     }
 
     // @MethodObjective- the objective of this method is to test the status code is 201 and response that its returning

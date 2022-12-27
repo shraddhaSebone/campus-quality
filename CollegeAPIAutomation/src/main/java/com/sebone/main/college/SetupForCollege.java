@@ -9,7 +9,6 @@ import io.restassured.specification.RequestSpecification;
 import com.sebone.main.response.GetApiResponse;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -243,5 +242,82 @@ public class SetupForCollege {
         //returning response, statuscode,statusline
         return new GetApiResponse(response,response.getStatusCode(),response.getStatusLine());
     }
+
+//    public GetApiResponse setUpForUpdatePlacement(UpdatePlacementDo updatePlacementDo,String collegeCode){
+//        /*
+//         * @MethodName- setUpForUpdatePlacement
+//         * @objective- to pass the entities that are required for the setUp of the updatePlacementDetails
+//         * @returnType-object,int,string
+//         */
+//
+//        //Specify the url
+//        RestAssured.baseURI ="http://13.232.186.165:8080/api/v1/campus/college/updatePlacementDetails";
+//        RequestSpecification httprequest = RestAssured.given();
+//
+//        RequestParamForUpdatePlacement requestParamForUpdatePlacement = new RequestParamForUpdatePlacement();
+//        JSONObject requestParamObj = requestParamForUpdatePlacement.getRequestParamForUpdatePlacement(updatePlacementDo);
+//        //to convert in string from json
+//        httprequest.body(requestParamObj.toJSONString());
+//        //passing content-type  in header
+//        httprequest.header("Content-Type","application/json");
+//        //passing auth token in header
+//        httprequest.header("Authorization","\"eyJraWQiOiJEWmdxUElCV3RSQWNhTzFIZ1g1eVRXbDJSdVNQOGlIYmtBVDFMR2lLVVwvYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyMjg3YWRmYi00YjRmLTQzYWYtYmVlMy1kOGVlM2M3Y2FhZjIiLCJjb2duaXRvOmdyb3VwcyI6WyJjb2xsZWdlIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC5hcC1zb3V0aC0xLmFtYXpvbmF3cy5jb21cL2FwLXNvdXRoLTFfejFORFhnU1pxIiwiY2xpZW50X2lkIjoiNTQ4ZzZoN3N1MWhzdTBpZTVzbWo4b28xMDEiLCJvcmlnaW5fanRpIjoiMWM2MjZmNWEtZjczNS00NTMzLWJiNmEtOTU3YTgwZWZiMWZhIiwiZXZlbnRfaWQiOiIyMDVhMTVkZS1lN2QyLTRmODMtYjZkMC01NWMyZjNiMmY3ZjMiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjcxNzkzMjgyLCJleHAiOjE2NzE3OTY4ODIsImlhdCI6MTY3MTc5MzI4MiwianRpIjoiMGY3YzY4YjgtNmRlMy00Yzc5LWJmMWUtNmQ0MjU5NGNkOTNlIiwidXNlcm5hbWUiOiJtb2hpdHJhanB1dDE0MTJAZ21haWwuY29tIn0.uRljKxRUeKL4cmrWaCH2tYoswdhWtINE28Lhi5Tfh5vHay3tgLFt5pF4KoPvmHCkgAuct-GNaqCxMDgKdq6E7Nt-E9Fy6SsvdshLPzrGlcF_tzDNX9nfAHNh5wKVQMdbxz2CUW7O1Yr3hRCD_OX9GifDVO1-MWB-uQcd7_EQ3Gxs618OvvJ7Ku64bLqsP5Z5Sh6P-fTKR-qSyjJzDns549ekV7Tj4YhwpzI3JRDlwzIG8B89YyrMh1vIcc4nKUtaAyVz311iKG5Gnk98Ppz6vzXPu0Q9BmDAsctt1Lpjj2B5qU-DyYLxyp6VwUkNiWXpP4HpeXyDNfpjSm2mKpFmjg\"");
+//        //passing method and url param in request and storing it in response.
+//        Response response = httprequest.request(Method.POST,collegeCode);
+//        //returning response, statuscode,statusline
+//        return new GetApiResponse(response,response.getStatusCode(),response.getStatusLine());
+//    }
+
+    public GetApiResponse setUpForUpdatePlacement(UpdatePlacementDo updatePlacementDo,String collegeCode){
+        /*
+         * @MethodName- setUpForImageUpload
+         * @objective- to pass the entities that are required for the setUp of the image upload
+         * @returnType-object,int,string
+         */
+
+        //Specify the url
+        RestAssured.baseURI ="http://13.232.186.165:8080/api/v1/campus/college/updatePlacementDetails";
+        //passing in requestParam
+        RequestParamForUpdatePlacement requestParamForUpdatePlacement = new RequestParamForUpdatePlacement();
+        JSONObject requestParamObj = requestParamForUpdatePlacement.getRequestParamForUpdatePlacement(updatePlacementDo);
+        Response response= given().urlEncodingEnabled(false).log().all().config(RestAssured.config().encoderConfig(encoderConfig().defaultContentCharset("UTF-8")))
+                .header("Content-Type", "application/json")
+                .header("Accept-Encoding","gzip, deflate, br")
+                .header("Connection", "keep-alive")
+                .header("Authorization","\"eyJraWQiOiJEWmdxUElCV3RSQWNhTzFIZ1g1eVRXbDJSdVNQOGlIYmtBVDFMR2lLVVwvYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyMjg3YWRmYi00YjRmLTQzYWYtYmVlMy1kOGVlM2M3Y2FhZjIiLCJjb2duaXRvOmdyb3VwcyI6WyJjb2xsZWdlIiwiU1RVREVOVF9DT0xMRUdFX0FQUFJPVkVEIiwiU1RVREVOVCJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGgtMS5hbWF6b25hd3MuY29tXC9hcC1zb3V0aC0xX3oxTkRYZ1NacSIsImNsaWVudF9pZCI6IjU0OGc2aDdzdTFoc3UwaWU1c21qOG9vMTAxIiwib3JpZ2luX2p0aSI6IjQ4ODc5NDNiLTljODUtNDRlNS05YTM0LWU1YTUzMTI1OTQzNCIsImV2ZW50X2lkIjoiNjJjOTA4MjktOGEyNy00MDdhLWJjZDUtOWU0ZWQzYjg3MTUwIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTY3MTcxMzQ5OSwiZXhwIjoxNjcxNzE3MDk5LCJpYXQiOjE2NzE3MTM0OTksImp0aSI6IjJjNDQyYTdlLTBiYzUtNGQ0Yy1hZDkxLTBmNWFmNzNjN2JkZSIsInVzZXJuYW1lIjoibW9oaXRyYWpwdXQxNDEyQGdtYWlsLmNvbSJ9.jIg8ssBciW6jUTPo7EqRW0NNZk14-eXZBVPk761LtIMNhIDMKpRytAH8rMThPYnJRlOxZaClWvINYNsokWp7CciJ2x3Sk0PgNLUoU4S7mksb80Xm09RFRas3emdFpyaINPFal-LC7P8Vi1MTzBuQ2kLuzVhbTflypooVeRxeaW2Iao2b3L15Mh2UZGZCI0YM_-hn7oBByCqV2nBgjUUxaVL72gIawdRPOf7x9uh4ffa9wh9lOO3KC7TJ5jXaQre71agrMz_LGB5jqRyQxygfmg0JPXKaqIgXu5XxW8NNUiP5AynzV9RJawtRwcjVlDSOPmIV4Rax8G-cyQUjfpDK5w\"")
+                .body(requestParamObj.toJSONString())
+                .when()
+                .post(collegeCode);
+        //returning response, statuscode,statusline
+        return new GetApiResponse(response,response.getStatusCode(),response.getStatusLine());
+    }
+
+//    public GetApiResponse setUpForUpdateCourse(UpdateCourseDo updateCourseDo, String collegeCode){
+//        /*
+//         * @MethodName- setUpForUpdatePlacement
+//         * @objective- to pass the entities that are required for the setUp of the updatePlacementDetails
+//         * @returnType-object,int,string
+//         */
+//
+//        //Specify the url
+//        RestAssured.baseURI ="http://13.232.186.165:8080/api/v1/campus/college/updatePlacementDetails";
+//        RequestSpecification httprequest = RestAssured.given();
+//
+//        RequestParamForUpdateCourse requestParamForUpdateCourse = new RequestParamForUpdateCourse();
+//        JSONObject requestParamObj = requestParamForUpdateCourse.getRequestParamForUpdateCourse(updateCourseDo);
+//        //to convert in string from json
+//        httprequest.body(requestParamObj.toJSONString());
+//        //passing content-type  in header
+//        httprequest.header("Content-Type","application/json");
+//        //passing auth token in header
+//        httprequest.header("Authorization","\"eyJraWQiOiJEWmdxUElCV3RSQWNhTzFIZ1g1eVRXbDJSdVNQOGlIYmtBVDFMR2lLVVwvYz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyMjg3YWRmYi00YjRmLTQzYWYtYmVlMy1kOGVlM2M3Y2FhZjIiLCJjb2duaXRvOmdyb3VwcyI6WyJjb2xsZWdlIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC5hcC1zb3V0aC0xLmFtYXpvbmF3cy5jb21cL2FwLXNvdXRoLTFfejFORFhnU1pxIiwiY2xpZW50X2lkIjoiNTQ4ZzZoN3N1MWhzdTBpZTVzbWo4b28xMDEiLCJvcmlnaW5fanRpIjoiMWM2MjZmNWEtZjczNS00NTMzLWJiNmEtOTU3YTgwZWZiMWZhIiwiZXZlbnRfaWQiOiIyMDVhMTVkZS1lN2QyLTRmODMtYjZkMC01NWMyZjNiMmY3ZjMiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjcxNzkzMjgyLCJleHAiOjE2NzE3OTY4ODIsImlhdCI6MTY3MTc5MzI4MiwianRpIjoiMGY3YzY4YjgtNmRlMy00Yzc5LWJmMWUtNmQ0MjU5NGNkOTNlIiwidXNlcm5hbWUiOiJtb2hpdHJhanB1dDE0MTJAZ21haWwuY29tIn0.uRljKxRUeKL4cmrWaCH2tYoswdhWtINE28Lhi5Tfh5vHay3tgLFt5pF4KoPvmHCkgAuct-GNaqCxMDgKdq6E7Nt-E9Fy6SsvdshLPzrGlcF_tzDNX9nfAHNh5wKVQMdbxz2CUW7O1Yr3hRCD_OX9GifDVO1-MWB-uQcd7_EQ3Gxs618OvvJ7Ku64bLqsP5Z5Sh6P-fTKR-qSyjJzDns549ekV7Tj4YhwpzI3JRDlwzIG8B89YyrMh1vIcc4nKUtaAyVz311iKG5Gnk98Ppz6vzXPu0Q9BmDAsctt1Lpjj2B5qU-DyYLxyp6VwUkNiWXpP4HpeXyDNfpjSm2mKpFmjg\"");
+//        //passing method and url param in request and storing it in response.
+//        Response response = httprequest.request(Method.POST,collegeCode);
+//        //returning response, statuscode,statusline
+//        return new GetApiResponse(response,response.getStatusCode(),response.getStatusLine());
+//    }
+
+
+
 
 }
